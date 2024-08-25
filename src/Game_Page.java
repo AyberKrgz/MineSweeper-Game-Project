@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,9 +13,8 @@ public class Game_Page implements ActionListener {
 	ArrayList<Integer> xCoordinate;
 	ArrayList<Integer> yCoordinate;
 	
-	public int mines=13;
-	public final int size=15;
-
+	public int mines = 7;
+	public final int size = 10;
 
 	JFrame frame = new JFrame("Minesweeper");
 	JPanel text_JPanel;
@@ -27,15 +27,13 @@ public class Game_Page implements ActionListener {
 
 
 	Game_Page(){
-		
-		
-		frame.setSize(500,500);
+
+		frame.setSize(700,700);
 		frame.setLayout(new BorderLayout());				                      			//Creating JFrame - ALP
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.revalidate();
 		frame.setLocationRelativeTo(null);
-
 
 		text_field=new JLabel();
 		text_field.setHorizontalAlignment(JLabel.CENTER);
@@ -43,15 +41,13 @@ public class Game_Page implements ActionListener {
 		text_field.setForeground(Color.BLACK);
 		text_field.setText("Minesweeper");
 
-
 		text_JPanel=new JPanel();
 		text_JPanel.setVisible(true);
 		text_JPanel.setBackground(Color.GREEN);											//Adding JLabel to JPanel and adding it top of the frame - ALP
 		text_JPanel.add(text_field);
 		frame.add(text_JPanel, BorderLayout.NORTH);
 
-
-		buttons = new JButton[size][size];											//its equalizing the lenghts of dimensions to size - ALP
+		buttons = new JButton[size][size];											//It's equalizing the lengths of dimensions to size - ALP
 
 		
 		button_JPanel = new JPanel();
@@ -85,41 +81,38 @@ public class Game_Page implements ActionListener {
     	
     	for (int i=0;i<mines;i++) {
     		
-    		int randomx=random.nextInt(size);																//evaluating cordinates of mines - EGE
-    		int randomy=random.nextInt(size);
+    		int randomX=random.nextInt(size);																//evaluating coordinates of mines - EGE
+    		int randomY=random.nextInt(size);
     		
-    		xCoordinate.add(randomx);
-    		yCoordinate.add(randomy);
+    		xCoordinate.add(randomX);
+    		yCoordinate.add(randomY);
     	}
     	
-    	for (int a=0; a<mines; a++) {
+    	for (int a=0; a<mines; a++) {							//Checks if bombs overlapped - EGE
     		for (int b=a+1; b<mines; b++) {
-    			while(xCoordinate.get(a)==xCoordinate.get(b) && yCoordinate.get(a)==yCoordinate.get(b)) {
+    			while(Objects.equals(xCoordinate.get(a), xCoordinate.get(b)) && Objects.equals(yCoordinate.get(a), yCoordinate.get(b))) {
     				a=0;
     				b=0;
-																											
-    				xCoordinate.set(a, random.nextInt(size));													//Checks if bombs overlaped - EGE
+
+					//If they are overlapped it will be set to new random values until they are not overlapped.
+    				xCoordinate.set(a, random.nextInt(size));
     				yCoordinate.set(b, random.nextInt(size));
     			}
     		}
     	}
 		
-		for (int a =0;a<size;a++){
-			for (int b =0;b<size;b++){							//equalizing all elemnts to false - ALP					
+		for (int a=0; a<size; a++){								//equalizing all elements to false - ALP
+			for (int b=0; b<size; b++){
 				mine_locations[a][b] = false;
-			}
-		}
-		
-		for(int i =0;i<xCoordinate.size();i++){
-																								
-			mine_locations[yCoordinate.get(i)][xCoordinate.get(i)] = true;								//set locations of mines to true on array - ALP
-		}
-
-		for(int a = 0;a<size;a++){
-			for(int b = 0 ;b<size;b++){				//equalizing all elemnts to false - ALP
 				is_visible[a][b] = false;
 			}
 		}
+		
+		for(int i=0; i<xCoordinate.size(); i++){
+			mine_locations[yCoordinate.get(i)][xCoordinate.get(i)] = true;								//set locations of mines to true on array - ALP
+
+		}
+
 		
 		for (int x =0;x<size;x++){							// Setting neighbour counts  	ALL TOGETHER
 			for (int y =0;y<size;y++){
@@ -154,7 +147,7 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if (x==size-1 && y==size-1){															//checking bottom right corner neigbours
+					if (x==size-1 && y==size-1){															//checking bottom right corner neighbours
 						if(mine_locations[y-1][x]){
 							mines_count++;
 						}
@@ -218,7 +211,7 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if(y==size-1 && x!=0 && x!=size-1){													//chechking bottom line neighbors
+					if(y==size-1 && x!=0 && x!=size-1){													//checking bottom line neighbors
 						if(mine_locations[y][x+1]){
 							mines_count++;
 						}
@@ -237,7 +230,7 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if(x==size-1 && y!=0 && y!=size-1){													//checking right line neigbors
+					if(x==size-1 && y!=0 && y!=size-1){													//checking right line neighbors
 						if(mine_locations[y-1][x]){
 							mines_count++;
 						}
@@ -295,24 +288,24 @@ public class Game_Page implements ActionListener {
 	
 	public void end_game(boolean win) {
 		
-		while(!win) {                                                                                     //Opening gif and launch page for lose situation - EGE
+		if(!win) {                                                                                     //Opening gif and launch page for lose situation - EGE
 			
 			LaunchPage launchPage = new LaunchPage(); 													  
 			launchPage.frame.setLocation(1200,300);
 			Bombed bombed = new Bombed();
 			bombed.bombedframe.setLocation(500,400);
-			break; 
+			//break;
 			
 		}
 						
-		while(win) {                                    											       //Opening gif for win situation - EGE
+		if(win) {                                    											       //Opening gif for win situation - EGE
 			
 			frame.dispose();
 			Welldone welldone = new Welldone();
 			LaunchPage launchPage = new LaunchPage();
 			welldone.welldoneframe.setLocation(350,300);
 
-			break;
+			//break;
 			
 		}
 		
@@ -548,7 +541,7 @@ public class Game_Page implements ActionListener {
 
 			}
 
-			if(x==size-1 && y!=0 && y!=size-1){																	//opening right line neigbors
+			if(x==size-1 && y!=0 && y!=size-1){																	//opening right line neighbors
 
 				buttons[y-1][x].setEnabled(false);
 				buttons[y+1][x].setEnabled(false);
@@ -636,17 +629,24 @@ public class Game_Page implements ActionListener {
 	}
 	
 	public void winning(){                                                                                 //Win situation - ALP
+
 		int opened_buttons = 0;
-			for (int a=0;a<size;a++){
-				for(int b=0;b<size;b++){
+
+			for (int a=0; a<size; a++){
+
+				for(int b=0; b<size; b++){
+
 					if(is_visible[a][b]){
 						opened_buttons++;
 					}
+
 				}
+
 			}
-		if(opened_buttons == (size*size)-mines){
-			end_game(true);
-		}
+
+
+		if(opened_buttons == (size*size)-mines) {end_game(true);}
+
 	}
 	
 	@Override
@@ -663,19 +663,18 @@ public class Game_Page implements ActionListener {
 						buttons[x][y].setEnabled(false);
 						end_game(false);
 					}
-
-					else{                                                                                  //Clicking on an empty button
+					else{                                                                                  //Clicking on an empty field
 						
-						if(neighbour[x][y]!=0){                                 
+						if(neighbour[x][y]!=0){
 
 							buttons[x][y].setText(Integer.toString(neighbour[x][y]));
-						
+
 						}
 
 						if(neighbour[x][y]==0){
-							
-							openArea(x,y);	
-							
+
+							openArea(x,y);
+
 						}
 						
 						is_visible[x][y]= true;
