@@ -314,6 +314,7 @@ public class Game_Page implements ActionListener {
 
 	}
 
+	//A method for finishing the game and deciding on either the player won or lost.
 	public void end_game(boolean win) {
 
 		//Opening gif and launch page for lose situation - EGE
@@ -659,8 +660,9 @@ public class Game_Page implements ActionListener {
 
 		}
 	}
-	
-	public void winning(){                                                                                 //Win situation - ALP
+
+	//Win situation - ALP
+	public void winning(){
 
 		int opened_buttons = 0;
 
@@ -677,30 +679,36 @@ public class Game_Page implements ActionListener {
 		if(opened_buttons == (size*size)-mines) {end_game(true);}
 
 	}
-	
+
+
+	//Click functions - AYBERK
 	@Override
-	public void actionPerformed(ActionEvent e) {                                                           //Click functions - AYBERK
+	public void actionPerformed(ActionEvent e) {
 
 		for(int x=0;x<buttons.length;x++) {
 			for(int y=0;y<buttons[0].length;y++) {
-				
-				if(e.getSource()==buttons[x][y]) {                                                        //Clicking on a button
 
-					if(mine_locations[x][y]){                                                             //Clicking on a mine                    
+				//Clicking on a button
+				if(e.getSource()==buttons[x][y]) {
+
+					//Clicking on a mine
+					if(mine_locations[x][y]){
 
 						buttons[x][y].setBackground(Color.RED);
 						buttons[x][y].setEnabled(false);
 						end_game(false);
 					}
-					else{                                                                                  //Clicking on an empty field
-						
-						if(neighbour[x][y]!=0){																//If neighbour count is not 0, then it's neighbour count must be shown.
+					//Clicking on an empty field
+					else{
+
+						//If neighbour count is not 0, then it's neighbour count must be shown.
+						if(neighbour[x][y]!=0){
 
 							buttons[x][y].setText(Integer.toString(neighbour[x][y]));
 
 						}
-
-						if(neighbour[x][y]==0){																//If neighbour count is 0, then it's surroundings must be opened as well.
+						//If neighbour count is 0, then it's surroundings must be opened as well.
+						if(neighbour[x][y]==0){
 
 							openArea(x,y);
 
