@@ -131,11 +131,13 @@ public class Game_Page implements ActionListener {
 
 	}
 
+	//TODO: Neighbour count bozuldu. Duzeltilecek.
+
 	//Setting neighbour counts  	ALL TOGETHER
 	public void setNeighbourCount(){
 
-		for (int x =0;x<size;x++){
-			for (int y =0;y<size;y++){
+		for (int x=0; x<size; x++){
+			for (int y=0; y<size; y++){
 
 				int mines_count=0;
 
@@ -406,11 +408,11 @@ public class Game_Page implements ActionListener {
 					openArea(y+1, x-1);
 				}
 				if(!is_visible[y+1][x]) {
-					buttons[y + 1][x].setEnabled(false);
-					is_visible[y + 1][x] = true;
-					buttons[y + 1][x].setBackground(Color.GREEN);
-					buttons[y + 1][x].setText(Integer.toString(neighbour[y + 1][x]));
-					openArea(y + 1, x);
+					buttons[y+1][x].setEnabled(false);
+					is_visible[y+1][x] = true;
+					buttons[y+1][x].setBackground(Color.GREEN);
+					buttons[y+1][x].setText(Integer.toString(neighbour[y + 1][x]));
+					openArea(y+1, x);
 				}
 
 			}
