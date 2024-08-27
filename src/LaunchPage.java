@@ -17,25 +17,28 @@ public class LaunchPage implements ActionListener{				// AYBERK
 	
 	LaunchPage(){
 
-
+		//creating frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(size,size);
 		frame.setLayout(null);
-		frame.setVisible(true);											//creating frame
+		frame.setVisible(true);
 		frame.revalidate();			
 		frame.setLocationRelativeTo(null);
-		
+
+		//creating JLabel
 		titleLabel.setBounds(123, 50, 200, 100);
-		titleLabel.setFont(new Font(null,Font.PLAIN,25));			//creating JLabel
+		titleLabel.setFont(new Font(null,Font.PLAIN,25));
 		frame.add(titleLabel);
-		
+
+		//creating start button
 		startButton.setBounds(100,160,200,40);
-		startButton.setFocusable(false);						//creating start button
+		startButton.setFocusable(false);
 		startButton.addActionListener(this);
 		frame.add(startButton);
-		
+
+		//creating quit button
 		quitButton.setBounds(100,210,200,40);
-		quitButton.setFocusable(false);						//creating quit button
+		quitButton.setFocusable(false);
 		quitButton.addActionListener(this);
 		frame.add(quitButton);
 	}

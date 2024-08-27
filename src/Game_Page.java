@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 
 
 public class Game_Page implements ActionListener {
@@ -28,40 +28,47 @@ public class Game_Page implements ActionListener {
 
 	Game_Page(){
 
+		//Creating JFrame - ALP
 		frame.setSize(700,700);
-		frame.setLayout(new BorderLayout());				                      			//Creating JFrame - ALP
+		frame.setLayout(new BorderLayout());
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.revalidate();
 		frame.setLocationRelativeTo(null);
 
+
+		// Creating Text on top of the frame - ALP
 		text_field=new JLabel();
 		text_field.setHorizontalAlignment(JLabel.CENTER);
-		text_field.setFont(new Font("Arial",Font.BOLD,20));						  // Creating Text on top of the frame - ALP
+		text_field.setFont(new Font("Arial",Font.BOLD,20));
 		text_field.setForeground(Color.BLACK);
-		text_field.setText("Minesweeper");
+		text_field.setText("MineSweeper");
 
+
+		//Adding JLabel to JPanel and adding it top of the frame - ALP
 		text_JPanel=new JPanel();
 		text_JPanel.setVisible(true);
-		text_JPanel.setBackground(Color.GREEN);											//Adding JLabel to JPanel and adding it top of the frame - ALP
+		text_JPanel.setBackground(Color.GREEN);
 		text_JPanel.add(text_field);
 		frame.add(text_JPanel, BorderLayout.NORTH);
 
-		buttons = new JButton[size][size];											//It's equalizing the lengths of dimensions to size - ALP
 
-		
+		//It's equalizing the lengths of dimensions to size - ALP
+		buttons = new JButton[size][size];
+
+
+		//Creating JPanel for buttons -ALP
 		button_JPanel = new JPanel();
-		button_JPanel.setVisible(true);									//Creating JPanel for buttons -ALP
+		button_JPanel.setVisible(true);
 		button_JPanel.setLayout(new GridLayout(size,size));
 
-		
-		for(int a=0; a<buttons.length; a++)
-		{
-			for(int b=0; b<buttons[0].length; b++)
-			{
+
+		//Creating all buttons and, adding them to JPanel - ALP
+		for(int a=0; a<buttons.length; a++){
+			for(int b=0; b<buttons[0].length; b++){
 				buttons[a][b]=new JButton();
 				buttons[a][b].setFocusable(false);
-				buttons[a][b].setFont(new Font("Arial",Font.BOLD,16));  //Creating all buttons and, adding them to JPanel - ALP
+				buttons[a][b].setFont(new Font("Arial",Font.BOLD,16));
 				buttons[a][b].addActionListener(this);
 				buttons[a][b].setText("");
 				buttons[a][b].setForeground(Color.BLACK);
@@ -69,7 +76,9 @@ public class Game_Page implements ActionListener {
 			}
 		}
 
-		frame.add(button_JPanel);												//Adding button_JPanel to frame - ALP
+
+		//Adding button_JPanel to frame - ALP
+		frame.add(button_JPanel);
 
 		int xCheck=size+1;
     	int yCheck=size+1;
@@ -78,17 +87,20 @@ public class Game_Page implements ActionListener {
     	
     	xCoordinate = new ArrayList<Integer>();
     	yCoordinate = new ArrayList<Integer>();
-    	
-    	for (int i=0;i<mines;i++) {
+
+
+		//evaluating coordinates of mines - EGE
+    	for (int i=0;i<mines;i++){
     		
-    		int randomX=random.nextInt(size);																//evaluating coordinates of mines - EGE
+    		int randomX=random.nextInt(size);
     		int randomY=random.nextInt(size);
     		
     		xCoordinate.add(randomX);
     		yCoordinate.add(randomY);
     	}
-    	
-    	for (int a=0; a<mines; a++) {							//Checks if bombs overlapped - EGE
+
+		//Checks if bombs overlapped - EGE
+    	for (int a=0; a<mines; a++) {
     		for (int b=a+1; b<mines; b++) {
     			while(Objects.equals(xCoordinate.get(a), xCoordinate.get(b)) && Objects.equals(yCoordinate.get(a), yCoordinate.get(b))) {
     				a=0;
@@ -100,32 +112,40 @@ public class Game_Page implements ActionListener {
     			}
     		}
     	}
-		
-		for (int a=0; a<size; a++){								//equalizing all elements to false - ALP
+
+		//equalizing all elements to false - ALP
+		for (int a=0; a<size; a++){
 			for (int b=0; b<size; b++){
 				mine_locations[a][b] = false;
 				is_visible[a][b] = false;
 			}
 		}
-		
-		for(int i=0; i<xCoordinate.size(); i++){
-			mine_locations[yCoordinate.get(i)][xCoordinate.get(i)] = true;								//set locations of mines to true on array - ALP
 
+		//set locations of mines to true on array - ALP
+		for(int i=0; i<xCoordinate.size(); i++){
+			mine_locations[yCoordinate.get(i)][xCoordinate.get(i)] = true;
 		}
 
-		
-		for (int x =0;x<size;x++){							// Setting neighbour counts  	ALL TOGETHER
+
+		//Setting neighbour counts  	ALL TOGETHER
+		setNeighbourCount();
+
+	}
+
+	public void setNeighbourCount(){							//Setting neighbour counts  	ALL TOGETHER
+
+		for (int x =0;x<size;x++){
 			for (int y =0;y<size;y++){
 
 				int mines_count=0;
 
-					if(!mine_locations[y][x]){
+				if(!mine_locations[y][x]){
 
-					if (x==0 && y==0){														     //checking top left corner neighbours 
+					if (x==0 && y==0){														     //checking top left corner neighbours
 						if(mine_locations[y][x+1]){
 							mines_count++;
 						}
-						if(mine_locations[y+1][x+1]){				
+						if(mine_locations[y+1][x+1]){
 							mines_count++;
 						}
 						if(mine_locations[y+1][x]){
@@ -138,7 +158,7 @@ public class Game_Page implements ActionListener {
 						if(mine_locations[y+1][x]){
 							mines_count++;
 						}
-						if(mine_locations[y+1][x-1]){			
+						if(mine_locations[y+1][x-1]){
 							mines_count++;
 						}
 						if(mine_locations[y][x-1]){
@@ -152,19 +172,19 @@ public class Game_Page implements ActionListener {
 							mines_count++;
 						}
 						if(mine_locations[y-1][x-1]){
-							mines_count++;								
+							mines_count++;
 						}
 						if(mine_locations[y][x-1]){
 							mines_count++;
 						}
 						neighbour[y][x] = mines_count;
 					}
-					
+
 					if (x==0 && y==size-1){															//checking bottom left corner neighbours
 						if(mine_locations[y-1][x]){
 							mines_count++;
 						}
-						if(mine_locations[y][x+1]){				
+						if(mine_locations[y][x+1]){
 							mines_count++;
 						}
 						if(mine_locations[y-1][x+1]){
@@ -174,7 +194,7 @@ public class Game_Page implements ActionListener {
 					}
 
 					if (x!=0 && y==0 && x!=size-1){													//checking top line neighbours
-						if(mine_locations[y][x+1]){						
+						if(mine_locations[y][x+1]){
 							mines_count++;
 						}
 						if(mine_locations[y][x-1]){
@@ -191,9 +211,9 @@ public class Game_Page implements ActionListener {
 						}
 						neighbour[y][x] = mines_count;
 					}
-				
+
 					if(x==0 && y!=0 && y!=size-1){													//checking left line neighbours
-						if(mine_locations[y-1][x]){						
+						if(mine_locations[y-1][x]){
 							mines_count++;
 						}
 						if(mine_locations[y+1][x]){
@@ -248,44 +268,45 @@ public class Game_Page implements ActionListener {
 						}
 						neighbour[y][x] = mines_count;
 					}
-						
-					
-					else {																		//checking inside fields' neighbours		
+
+
+					else {																		//checking inside fields' neighbours
 						if(x>0 && y>0 && y<size-1 && x<size-1){
 
-						if(mine_locations[y-1][x-1]){
-							mines_count++;
-						}
-						if(mine_locations[y-1][x]){
-							mines_count++;
-						}
-						if(mine_locations[y-1][x+1]){
-							mines_count++;
-						}
-						if(mine_locations[y][x-1]){
-							mines_count++;
-						}
-						if(mine_locations[y][x+1]){
-							mines_count++;
-						}
-						if(mine_locations[y+1][x-1]){
-							mines_count++;
-						}
-						if(mine_locations[y+1][x]){
-							mines_count++;
-						}
-						if(mine_locations[y+1][x+1]){
-							mines_count++;
-						}
-						neighbour[y][x] = mines_count;
+							if(mine_locations[y-1][x-1]){
+								mines_count++;
+							}
+							if(mine_locations[y-1][x]){
+								mines_count++;
+							}
+							if(mine_locations[y-1][x+1]){
+								mines_count++;
+							}
+							if(mine_locations[y][x-1]){
+								mines_count++;
+							}
+							if(mine_locations[y][x+1]){
+								mines_count++;
+							}
+							if(mine_locations[y+1][x-1]){
+								mines_count++;
+							}
+							if(mine_locations[y+1][x]){
+								mines_count++;
+							}
+							if(mine_locations[y+1][x+1]){
+								mines_count++;
+							}
+							neighbour[y][x] = mines_count;
 
 						}
 					}
 				}
 			}
 		}
+
 	}
-	
+
 	public void end_game(boolean win) {
 		
 		if(!win) {                                                                                     //Opening gif and launch page for lose situation - EGE
@@ -633,18 +654,15 @@ public class Game_Page implements ActionListener {
 		int opened_buttons = 0;
 
 			for (int a=0; a<size; a++){
+			for(int b=0; b<size; b++){
 
-				for(int b=0; b<size; b++){
-
-					if(is_visible[a][b]){
-						opened_buttons++;
-					}
-
+				if(is_visible[a][b]){
+					opened_buttons++;
 				}
 
 			}
 
-
+		}
 		if(opened_buttons == (size*size)-mines) {end_game(true);}
 
 	}
@@ -665,13 +683,13 @@ public class Game_Page implements ActionListener {
 					}
 					else{                                                                                  //Clicking on an empty field
 						
-						if(neighbour[x][y]!=0){
+						if(neighbour[x][y]!=0){																//If neighbour count is not 0, then it's neighbour count must be shown.
 
 							buttons[x][y].setText(Integer.toString(neighbour[x][y]));
 
 						}
 
-						if(neighbour[x][y]==0){
+						if(neighbour[x][y]==0){																//If neighbour count is 0, then it's surroundings must be opened as well.
 
 							openArea(x,y);
 
@@ -688,5 +706,7 @@ public class Game_Page implements ActionListener {
 			}
 		}
 	}
+
+
 }
 	
