@@ -327,9 +327,9 @@ public class Game_Page implements ActionListener {
 		//Opening gif for win situation - EGE
 		if(win) {
 			frame.dispose();
-			Welldone welldone = new Welldone();
+			WellDone wellDone = new WellDone();
 			LaunchPage launchPage = new LaunchPage();
-			welldone.welldoneframe.setLocation(350,300);
+			wellDone.wellDoneFrame.setLocation(350,300);
 		}
 
 		//Mines are being marked as "*" - EGE

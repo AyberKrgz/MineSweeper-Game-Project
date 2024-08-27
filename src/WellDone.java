@@ -4,23 +4,23 @@ import javax.swing.JLabel;
 
 public class WellDone extends JFrame {
 
-    JFrame welldoneframe;
+    JFrame wellDoneFrame;
     JLabel displayField;
     ImageIcon image;
     
     public WellDone(){
         
-    	welldoneframe = new JFrame("Well Done!!!");
-    	welldoneframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	welldoneframe.setSize(374,404);
-    	welldoneframe.setVisible(true);
-    	welldoneframe.revalidate();
-    	welldoneframe.setLocationRelativeTo(null);
+    	wellDoneFrame = new JFrame("Well Done!!!");
+    	wellDoneFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	wellDoneFrame.setSize(374,404);
+    	wellDoneFrame.setVisible(true);
+    	wellDoneFrame.revalidate();
+    	wellDoneFrame.setLocationRelativeTo(null);
 
         try{
             image = new ImageIcon(getClass().getResource("welldone.gif"));
             displayField = new JLabel(image);
-            welldoneframe.add(displayField);
+            wellDoneFrame.add(displayField);
 
         }
         catch (Exception e){
