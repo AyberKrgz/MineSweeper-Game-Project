@@ -12,7 +12,7 @@ public class Game_Page implements ActionListener {
 	ArrayList<Integer> xCoordinate;
 	ArrayList<Integer> yCoordinate;
 	
-	public int mines = 7;
+	public int mines = 13;
 	public final int size = 10;
 
 	JFrame frame = new JFrame("Minesweeper");
@@ -361,299 +361,342 @@ public class Game_Page implements ActionListener {
 
 			//opening for top left corner
 			if (y==0 && x==0){
-																						
-				buttons[y+1][x].setEnabled(false);
-				buttons[y+1][x+1].setEnabled(false);
-				buttons[y][x+1].setEnabled(false);
 
-				is_visible[y+1][x] = true;
-				is_visible[y+1][x+1] = true;
-				is_visible[y][x+1] = true;
-				
+				if(!is_visible[y+1][x]){
+					buttons[y+1][x].setEnabled(false);
+					is_visible[y+1][x] = true;
+					buttons[y+1][x].setBackground(Color.GREEN);
+					buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
+					openArea(y+1, x);
+				}
+				if(!is_visible[y+1][x+1]){
+					buttons[y+1][x+1].setEnabled(false);
+					is_visible[y+1][x+1] = true;
+					buttons[y+1][x+1].setBackground(Color.GREEN);
+					buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
+					openArea(y+1, x+1);
 
-				buttons[y+1][x].setBackground(Color.GREEN);
-				buttons[y+1][x+1].setBackground(Color.GREEN);
-				buttons[y][x+1].setBackground(Color.GREEN);
-		
-				
-				buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
-				buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
-				buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
+				}
+				if(!is_visible[y][x+1]){
+					buttons[y][x+1].setEnabled(false);
+					is_visible[y][x+1] = true;
+					buttons[y][x+1].setBackground(Color.GREEN);
+					buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
+					openArea(y, x+1);
 
-				openArea(y+1, x);
-				openArea(y+1, x+1);
-				openArea(y, x+1);
+				}
 
 			}
 
 			//opening for top right corner
 			else if (x==size-1 && y==0){
-																										
-				buttons[y][x-1].setEnabled(false);
-				buttons[y+1][x-1].setEnabled(false);
-				buttons[y+1][x].setEnabled(false);
 
-				is_visible[y][x-1] = true;
-				is_visible[y+1][x-1] = true;
-				is_visible[y+1][x] = true;
-				
-
-				buttons[y][x-1].setBackground(Color.GREEN);
-				buttons[y+1][x-1].setBackground(Color.GREEN);
-				buttons[y+1][x].setBackground(Color.GREEN);
-																																																		
-																																																				
-				buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
-				buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
-				buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
-				
-				openArea(y, x-1);
-				openArea(y+1, x-1);
-				openArea(y+1, x);
+				if(!is_visible[y][x-1]){
+					buttons[y][x-1].setEnabled(false);
+					is_visible[y][x-1] = true;
+					buttons[y][x-1].setBackground(Color.GREEN);
+					buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
+					openArea(y, x-1);
+				}
+				if(!is_visible[y+1][x-1]){
+					buttons[y+1][x-1].setEnabled(false);
+					is_visible[y+1][x-1] = true;
+					buttons[y+1][x-1].setBackground(Color.GREEN);
+					buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
+					openArea(y+1, x-1);
+				}
+				if(!is_visible[y+1][x]) {
+					buttons[y + 1][x].setEnabled(false);
+					is_visible[y + 1][x] = true;
+					buttons[y + 1][x].setBackground(Color.GREEN);
+					buttons[y + 1][x].setText(Integer.toString(neighbour[y + 1][x]));
+					openArea(y + 1, x);
+				}
 
 			}
 
 			//opening for bottom right corner
 			else if (x==size-1 && y==size-1){
-				
-				buttons[y-1][x-1].setEnabled(false);
-				buttons[y-1][x].setEnabled(false);
-				buttons[y][x-1].setEnabled(false);
 
-				is_visible[y-1][x-1] = true;
-				is_visible[y-1][x] = true;
-				is_visible[y][x-1] = true;
-				
-
-				buttons[y-1][x-1].setBackground(Color.GREEN);
-				buttons[y-1][x].setBackground(Color.GREEN);
-				buttons[y][x-1].setBackground(Color.GREEN);
-		
-				
-				buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
-				buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
-				buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
-
-				openArea(y-1, x-1);
-				openArea(y-1, x);
-				openArea(y, x-1);
+				if(!is_visible[y-1][x-1]){
+					buttons[y-1][x-1].setEnabled(false);
+					is_visible[y-1][x-1] = true;
+					buttons[y-1][x-1].setBackground(Color.GREEN);
+					buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
+					openArea(y-1, x-1);
+				}
+				if(!is_visible[y-1][x]){
+					buttons[y-1][x].setEnabled(false);
+					is_visible[y-1][x] = true;
+					buttons[y-1][x].setBackground(Color.GREEN);
+					buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
+					openArea(y-1, x);
+				}
+				if(!is_visible[y][x-1]){
+					buttons[y][x-1].setEnabled(false);
+					is_visible[y][x-1] = true;
+					buttons[y][x-1].setBackground(Color.GREEN);
+					buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
+					openArea(y, x-1);
+				}
 
 			}
 
 			//opening bottom left corner neighbours
 			else if (x==0 && y==size-1){
-																										
-				buttons[y-1][x].setEnabled(false);
-				buttons[y-1][x+1].setEnabled(false);
-				buttons[y][x+1].setEnabled(false);
 
-				is_visible[y-1][x] = true;
-				is_visible[y-1][x+1] = true;
-				is_visible[y][x+1] = true;
-				
-		
-				buttons[y-1][x].setBackground(Color.GREEN);
-				buttons[y-1][x+1].setBackground(Color.GREEN);
-				buttons[y][x+1].setBackground(Color.GREEN);
-				
-				buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
-				buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
-				buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
+				if(!is_visible[y-1][x]){
+					buttons[y-1][x].setEnabled(false);
+					is_visible[y-1][x] = true;
+					buttons[y-1][x].setBackground(Color.GREEN);
+					buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
+					openArea(y-1, x);
+				}
+				if(!is_visible[y-1][x+1]){
+					buttons[y-1][x+1].setEnabled(false);
+					is_visible[y-1][x+1] = true;
+					buttons[y-1][x+1].setBackground(Color.GREEN);
+					buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
 
-				openArea(y-1, x);
-				openArea(y-1, x+1);
-				openArea(y, x+1);
+				}
+				if(!is_visible[y][x+1]){
+					openArea(y-1, x+1);
+					buttons[y][x+1].setEnabled(false);
+					is_visible[y][x+1] = true;
+					buttons[y][x+1].setBackground(Color.GREEN);
+					buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
+					openArea(y, x+1);
+				}
 
 			}
 
 			//opening top line neighbours
 			else if (y==0){
 
-				buttons[y][x+1].setEnabled(false);
-				buttons[y][x-1].setEnabled(false);
-				buttons[y+1][x+1].setEnabled(false);
-				buttons[y+1][x].setEnabled(false);
-				buttons[y+1][x-1].setEnabled(false);
-
-				is_visible[y][x+1] = true;
-				is_visible[y][x-1] = true;
-				is_visible[y+1][x+1] = true;
-				is_visible[y+1][x] = true;
-				is_visible[y+1][x-1] = true;
-				
-				buttons[y][x+1].setBackground(Color.GREEN);
-				buttons[y][x-1].setBackground(Color.GREEN);
-				buttons[y+1][x+1].setBackground(Color.GREEN);
-				buttons[y+1][x].setBackground(Color.GREEN);
-				buttons[y+1][x-1].setBackground(Color.GREEN);
-				
-				buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
-				buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
-				buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
-				buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
-				buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
-
-				openArea(y, x+1);
-				openArea(y, x-1);
-				openArea(y+1, x+1);
-				openArea(y+1, x);
-				openArea(y+1, x-1);
+				if(!is_visible[y][x+1]){
+					buttons[y][x+1].setEnabled(false);
+					is_visible[y][x+1] = true;
+					buttons[y][x+1].setBackground(Color.GREEN);
+					buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
+					openArea(y, x+1);
+				}
+				if(!is_visible[y][x-1]){
+					buttons[y][x-1].setEnabled(false);
+					is_visible[y][x-1] = true;
+					buttons[y][x-1].setBackground(Color.GREEN);
+					buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
+					openArea(y, x-1);
+				}
+				if(!is_visible[y+1][x+1]){
+					buttons[y+1][x+1].setEnabled(false);
+					is_visible[y+1][x+1] = true;
+					buttons[y+1][x+1].setBackground(Color.GREEN);
+					buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
+					openArea(y+1, x+1);
+				}
+				if(!is_visible[y+1][x]){
+					buttons[y+1][x].setEnabled(false);
+					is_visible[y+1][x] = true;
+					buttons[y+1][x].setBackground(Color.GREEN);
+					buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
+					openArea(y+1, x);
+				}
+				if(!is_visible[y+1][x-1]){
+					buttons[y+1][x-1].setEnabled(false);
+					is_visible[y+1][x-1] = true;
+					buttons[y+1][x-1].setBackground(Color.GREEN);
+					buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
+					openArea(y+1, x-1);
+				}
 
 			}
 
 			//opening left line neighbours
 			else if(x==0){
 
-				buttons[y-1][x].setEnabled(false);
-				buttons[y+1][x].setEnabled(false);
-				buttons[y-1][x+1].setEnabled(false);
-				buttons[y][x+1].setEnabled(false);
-				buttons[y+1][x+1].setEnabled(false);
-
-				is_visible[y-1][x] = true;
-				is_visible[y+1][x] = true;
-				is_visible[y-1][x+1] = true;
-				is_visible[y][x+1] = true;
-				is_visible[y+1][x+1] = true;
-				
-
-				buttons[y-1][x].setBackground(Color.GREEN);
-				buttons[y+1][x].setBackground(Color.GREEN);
-				buttons[y-1][x+1].setBackground(Color.GREEN);
-				buttons[y][x+1].setBackground(Color.GREEN);
-				buttons[y+1][x+1].setBackground(Color.GREEN);
-						
-				buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
-				buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
-				buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
-				buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
-				buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
-
-				openArea(y-1, x);
-				openArea(y+1, x);
-				openArea(y-1, x+1);
-				openArea(y, x+1);
-				openArea(y+1, x+1);
+				if(!is_visible[y-1][x]){
+					buttons[y-1][x].setEnabled(false);
+					is_visible[y-1][x] = true;
+					buttons[y-1][x].setBackground(Color.GREEN);
+					buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
+					openArea(y-1, x);
+				}
+				if(!is_visible[y+1][x]){
+					buttons[y+1][x].setEnabled(false);
+					is_visible[y+1][x] = true;
+					buttons[y+1][x].setBackground(Color.GREEN);
+					buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
+					openArea(y+1, x);
+				}
+				if(!is_visible[y-1][x+1]){
+					buttons[y-1][x+1].setEnabled(false);
+					is_visible[y-1][x+1] = true;
+					buttons[y-1][x+1].setBackground(Color.GREEN);
+					buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
+					openArea(y-1, x+1);
+				}
+				if(!is_visible[y][x+1]){
+					buttons[y][x+1].setEnabled(false);
+					is_visible[y][x+1] = true;
+					buttons[y][x+1].setBackground(Color.GREEN);
+					buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
+					openArea(y, x+1);
+				}
+				if(!is_visible[y+1][x+1]){
+					buttons[y+1][x+1].setEnabled(false);
+					is_visible[y+1][x+1] = true;
+					buttons[y+1][x+1].setBackground(Color.GREEN);
+					buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
+					openArea(y+1, x+1);
+				}
 
 			}
 
 			//opening bottom line neighbors
 			else if(y==size-1){
 
-				buttons[y][x+1].setEnabled(false);
-				buttons[y][x-1].setEnabled(false);
-				buttons[y-1][x+1].setEnabled(false);
-				buttons[y-1][x].setEnabled(false);
-				buttons[y-1][x-1].setEnabled(false);
+				if(!is_visible[y][x+1]){
+					buttons[y][x+1].setEnabled(false);
+					is_visible[y][x+1] = true;
+					buttons[y][x+1].setBackground(Color.GREEN);
+					buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
+					openArea(y, x+1);
+				}
+				if(!is_visible[y][x-1]){
+					buttons[y][x-1].setEnabled(false);
+					is_visible[y][x-1] = true;
+					buttons[y][x-1].setBackground(Color.GREEN);
+					buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
 
-				is_visible[y][x+1] = true;
-				is_visible[y][x-1] = true;
-				is_visible[y-1][x+1] = true;
-				is_visible[y-1][x] = true;
-				is_visible[y-1][x-1] = true;
-				
+				}
+				if(!is_visible[y-1][x+1]){
+					openArea(y, x-1);
+					buttons[y-1][x+1].setEnabled(false);
+					is_visible[y-1][x+1] = true;
+					buttons[y-1][x+1].setBackground(Color.GREEN);
+					buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
 
-				buttons[y][x+1].setBackground(Color.GREEN);
-				buttons[y][x-1].setBackground(Color.GREEN);
-				buttons[y-1][x+1].setBackground(Color.GREEN);
-				buttons[y-1][x].setBackground(Color.GREEN);
-				buttons[y-1][x-1].setBackground(Color.GREEN);
-						
-				buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
-				buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
-				buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
-				buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
-				buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
+				}
+				if(!is_visible[y-1][x]){
+					openArea(y-1, x+1);
+					buttons[y-1][x].setEnabled(false);
+					is_visible[y-1][x] = true;
+					buttons[y-1][x].setBackground(Color.GREEN);
+					buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
 
-				openArea(y, x+1);
-				openArea(y, x-1);
-				openArea(y-1, x+1);
-				openArea(y-1, x);
-				openArea(y-1, x-1);
+				}
+				if(!is_visible[y-1][x-1]){
+					openArea(y-1, x);
+					buttons[y-1][x-1].setEnabled(false);
+					is_visible[y-1][x-1] = true;
+					buttons[y-1][x-1].setBackground(Color.GREEN);
+					buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
+					openArea(y-1, x-1);
+				}
 
 			}
 
 			//opening right line neighbors
 			else if(x==size-1){
 
-				buttons[y-1][x].setEnabled(false);
-				buttons[y+1][x].setEnabled(false);
-				buttons[y][x-1].setEnabled(false);
-				buttons[y-1][x-1].setEnabled(false);
-				buttons[y+1][x-1].setEnabled(false);
+				if(!is_visible[y-1][x]){
+					buttons[y-1][x].setEnabled(false);
+					is_visible[y-1][x] = true;
+					buttons[y-1][x].setBackground(Color.GREEN);
+					buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
+					openArea(y-1, x);
+				}
+				if(!is_visible[y+1][x]){
+					buttons[y+1][x].setEnabled(false);
+					is_visible[y+1][x] = true;
+					buttons[y+1][x].setBackground(Color.GREEN);
+					buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
+					openArea(y+1, x);
+				}
+				if(!is_visible[y][x-1]){
+					buttons[y][x-1].setEnabled(false);
+					is_visible[y][x-1] = true;
+					buttons[y][x-1].setBackground(Color.GREEN);
+					buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
+					openArea(y, x-1);
+				}
+				if(!is_visible[y-1][x-1]){
+					buttons[y-1][x-1].setEnabled(false);
+					is_visible[y-1][x-1] = true;
+					buttons[y-1][x-1].setBackground(Color.GREEN);
+					buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
+					openArea(y-1, x-1);
+				}
+				if(!is_visible[y+1][x-1]){
+					buttons[y+1][x-1].setEnabled(false);
+					is_visible[y+1][x-1] = true;
+					buttons[y+1][x-1].setBackground(Color.GREEN);
+					buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
+					openArea(y+1, x-1);
+				}
 
-				is_visible[y-1][x] = true;
-				is_visible[y+1][x] = true;
-				is_visible[y][x-1] = true;
-				is_visible[y-1][x-1] = true;
-				is_visible[y+1][x-1] = true;
-				
-
-				buttons[y-1][x].setBackground(Color.GREEN);
-				buttons[y+1][x].setBackground(Color.GREEN);
-				buttons[y][x-1].setBackground(Color.GREEN);
-				buttons[y-1][x-1].setBackground(Color.GREEN);
-				buttons[y+1][x-1].setBackground(Color.GREEN);
-						
-				buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
-				buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
-				buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
-				buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
-				buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
-
-				openArea(y-1, x);
-				openArea(y+1, x);
-				openArea(y, x-1);
-				openArea(y-1, x-1);
-				openArea(y+1, x-1);
 			}
 
 			//opening inside neighbours
 			else{
-				buttons[y-1][x-1].setEnabled(false);
-				buttons[y-1][x].setEnabled(false);
-				buttons[y-1][x+1].setEnabled(false);
-				buttons[y][x+1].setEnabled(false);
-				buttons[y][x-1].setEnabled(false);
-				buttons[y+1][x-1].setEnabled(false);
-				buttons[y+1][x].setEnabled(false);
-				buttons[y+1][x+1].setEnabled(false);
-					
-				is_visible[y-1][x-1] = true;
-				is_visible[y-1][x] = true;
-				is_visible[y-1][x+1] = true;
-				is_visible[y][x-1] = true;
-				is_visible[y][x+1] = true;
-				is_visible[y+1][x-1] = true;
-				is_visible[y+1][x] = true;
-				is_visible[y+1][x+1] = true;
 
-				buttons[y-1][x-1].setBackground(Color.GREEN);
-				buttons[y-1][x].setBackground(Color.GREEN);
-				buttons[y-1][x+1].setBackground(Color.GREEN);
-				buttons[y][x+1].setBackground(Color.GREEN);
-				buttons[y][x-1].setBackground(Color.GREEN);
-				buttons[y+1][x-1].setBackground(Color.GREEN);
-				buttons[y+1][x].setBackground(Color.GREEN);
-				buttons[y+1][x+1].setBackground(Color.GREEN);
-					
-				buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
-				buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
-				buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
-				buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
-				buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
-				buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
-				buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
-				buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
+				if(!is_visible[y-1][x-1]){
+					buttons[y-1][x-1].setEnabled(false);
+					is_visible[y-1][x-1] = true;
+					buttons[y-1][x-1].setBackground(Color.GREEN);
+					buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
+					openArea(y-1, x-1);
+				}
+				if(!is_visible[y-1][x]){
+					buttons[y-1][x].setEnabled(false);
+					is_visible[y-1][x] = true;
+					buttons[y-1][x].setBackground(Color.GREEN);
+					buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
+					openArea(y-1, x);
+				}
+				if(!is_visible[y-1][x+1]){
+					buttons[y-1][x+1].setEnabled(false);
+					is_visible[y-1][x+1] = true;
+					buttons[y-1][x+1].setBackground(Color.GREEN);
+					buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
+					openArea(y-1, x+1);
+				}
+				if(!is_visible[y][x-1]){
+					buttons[y][x-1].setEnabled(false);
+					is_visible[y][x-1] = true;
+					buttons[y][x-1].setBackground(Color.GREEN);
+					buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
+					openArea(y, x-1);
+				}
+				if(!is_visible[y][x+1]){
+					buttons[y+1][x+1].setEnabled(false);
+					is_visible[y+1][x+1] = true;
+					buttons[y+1][x+1].setBackground(Color.GREEN);
+					buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
+					openArea(y+1, x+1);
+				}
+				if(!is_visible[y+1][x-1]){
+					buttons[y+1][x-1].setEnabled(false);
+					is_visible[y+1][x-1] = true;
+					buttons[y+1][x-1].setBackground(Color.GREEN);
+					buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
+					openArea(y+1, x-1);
+				}
+				if(!is_visible[y+1][x]){
+					buttons[y+1][x].setEnabled(false);
+					is_visible[y+1][x] = true;
+					buttons[y+1][x].setBackground(Color.GREEN);
+					buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
+					openArea(y+1, x);
+				}
+				if(!is_visible[y+1][x+1]){
+					buttons[y+1][x+1].setEnabled(false);
+					is_visible[y+1][x+1] = true;
+					buttons[y+1][x+1].setBackground(Color.GREEN);
+					buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
+					openArea(y+1, x+1);
+				}
 
-				openArea(y-1, x-1);
-				openArea(y-1, x);
-				openArea(y-1, x+1);
-				openArea(y, x+1);
-				openArea(y, x-1);
-				openArea(y+1, x-1);
-				openArea(y+1, x);
-				openArea(y+1, x+1);
 			}
 			winning();
 		}
@@ -702,9 +745,7 @@ public class Game_Page implements ActionListener {
 						is_visible[x][y]= true;
 						buttons[x][y].setBackground(Color.GREEN);
 						buttons[x][y].setEnabled(false);
-
-						//If neighbour count is not 0, then it's neighbour count must be shown.
-						if(neighbour[x][y]!=0){	buttons[x][y].setText(Integer.toString(neighbour[x][y])); }
+						buttons[x][y].setText(Integer.toString(neighbour[x][y]));
 
 						//If neighbour count is 0, then it's surroundings must be opened as well.
 						if(neighbour[x][y]==0){ openArea(x,y); }
