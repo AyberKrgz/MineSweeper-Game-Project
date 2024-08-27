@@ -3,9 +3,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
 
-
-
-
 public class LaunchPage implements ActionListener{				// AYBERK
 
 	JFrame frame = new JFrame("Minesweeper");
@@ -52,7 +49,6 @@ public class LaunchPage implements ActionListener{				// AYBERK
 			frame.dispose();
             Game_Page gamepage = new Game_Page();
 			
-
 		}
 		
 		if(e.getSource()==quitButton) {
