@@ -369,7 +369,6 @@ public class Game_Page implements ActionListener {
 				is_visible[y+1][x] = true;
 				is_visible[y+1][x+1] = true;
 				is_visible[y][x+1] = true;
-
 				
 
 				buttons[y+1][x].setBackground(Color.GREEN);
