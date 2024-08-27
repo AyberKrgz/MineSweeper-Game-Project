@@ -40,19 +40,21 @@ public class LaunchPage implements ActionListener{				// AYBERK
 		frame.add(quitButton);
 	}
 
-
-
+	//Mouse click functions
 	public void actionPerformed(ActionEvent e) {
 
-		if(e.getSource()==startButton) {
+		//Clicking to the start button
+		if(e.getSource()==startButton){
 
 			frame.dispose();
             Game_Page gamepage = new Game_Page();
-			
+
 		}
-		
-		if(e.getSource()==quitButton) {
+
+		//Clicking to the quit button
+		if(e.getSource()==quitButton){
 			System.exit(0);
 		}
 	}
+
 }
