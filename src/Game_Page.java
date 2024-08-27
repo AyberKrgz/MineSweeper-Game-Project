@@ -656,7 +656,7 @@ public class Game_Page implements ActionListener {
 				openArea(y+1, x);
 				openArea(y+1, x+1);
 			}
-
+			winning();
 		}
 	}
 
@@ -665,7 +665,7 @@ public class Game_Page implements ActionListener {
 
 		int opened_buttons = 0;
 
-			for (int a=0; a<size; a++){
+		for (int a=0; a<size; a++){
 			for(int b=0; b<size; b++){
 
 				if(is_visible[a][b]){
@@ -675,7 +675,7 @@ public class Game_Page implements ActionListener {
 			}
 
 		}
-		if(opened_buttons == (size*size)-mines) {end_game(true);}
+		if(opened_buttons >= (size*size)-mines) {end_game(true);}
 
 	}
 
@@ -700,22 +700,15 @@ public class Game_Page implements ActionListener {
 					//Clicking on an empty field
 					else{
 
-						//If neighbour count is not 0, then it's neighbour count must be shown.
-						if(neighbour[x][y]!=0){
-
-							buttons[x][y].setText(Integer.toString(neighbour[x][y]));
-
-						}
-						//If neighbour count is 0, then it's surroundings must be opened as well.
-						if(neighbour[x][y]==0){
-
-							openArea(x,y);
-
-						}
-						
 						is_visible[x][y]= true;
 						buttons[x][y].setBackground(Color.GREEN);
 						buttons[x][y].setEnabled(false);
+
+						//If neighbour count is not 0, then it's neighbour count must be shown.
+						if(neighbour[x][y]!=0){	buttons[x][y].setText(Integer.toString(neighbour[x][y])); }
+
+						//If neighbour count is 0, then it's surroundings must be opened as well.
+						if(neighbour[x][y]==0){ openArea(x,y); }
 
 						winning();
 						
