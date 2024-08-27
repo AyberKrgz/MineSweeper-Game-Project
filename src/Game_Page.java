@@ -132,7 +132,8 @@ public class Game_Page implements ActionListener {
 
 	}
 
-	public void setNeighbourCount(){							//Setting neighbour counts  	ALL TOGETHER
+	//Setting neighbour counts  	ALL TOGETHER
+	public void setNeighbourCount(){
 
 		for (int x =0;x<size;x++){
 			for (int y =0;y<size;y++){
@@ -141,7 +142,8 @@ public class Game_Page implements ActionListener {
 
 				if(!mine_locations[y][x]){
 
-					if (x==0 && y==0){														     //checking top left corner neighbours
+					//checking top left corner neighbours
+					if (x==0 && y==0){
 						if(mine_locations[y][x+1]){
 							mines_count++;
 						}
@@ -154,7 +156,8 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if (x==size-1 && y==0){														    //checking top right corner neighbours
+					//checking top right corner neighbours
+					else if (x==size-1 && y==0){
 						if(mine_locations[y+1][x]){
 							mines_count++;
 						}
@@ -167,7 +170,8 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if (x==size-1 && y==size-1){															//checking bottom right corner neighbours
+					//checking bottom right corner neighbours
+					else if (x==size-1 && y==size-1){
 						if(mine_locations[y-1][x]){
 							mines_count++;
 						}
@@ -180,7 +184,8 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if (x==0 && y==size-1){															//checking bottom left corner neighbours
+					//checking bottom left corner neighbours
+					else if (x==0 && y==size-1){
 						if(mine_locations[y-1][x]){
 							mines_count++;
 						}
@@ -193,7 +198,8 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if (x!=0 && y==0 && x!=size-1){													//checking top line neighbours
+					//checking top line neighbours
+					else if (y==0){
 						if(mine_locations[y][x+1]){
 							mines_count++;
 						}
@@ -212,7 +218,8 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if(x==0 && y!=0 && y!=size-1){													//checking left line neighbours
+					//checking left line neighbours
+					else if(x==0){
 						if(mine_locations[y-1][x]){
 							mines_count++;
 						}
@@ -231,7 +238,8 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if(y==size-1 && x!=0 && x!=size-1){													//checking bottom line neighbors
+					//checking bottom line neighbors
+					else if(y==size-1){
 						if(mine_locations[y][x+1]){
 							mines_count++;
 						}
@@ -250,7 +258,8 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-					if(x==size-1 && y!=0 && y!=size-1){													//checking right line neighbors
+					//checking right line neighbors
+					else if(x==size-1){
 						if(mine_locations[y-1][x]){
 							mines_count++;
 						}
@@ -269,38 +278,36 @@ public class Game_Page implements ActionListener {
 						neighbour[y][x] = mines_count;
 					}
 
-
-					else {																		//checking inside fields' neighbours
-						if(x>0 && y>0 && y<size-1 && x<size-1){
-
-							if(mine_locations[y-1][x-1]){
-								mines_count++;
-							}
-							if(mine_locations[y-1][x]){
-								mines_count++;
-							}
-							if(mine_locations[y-1][x+1]){
-								mines_count++;
-							}
-							if(mine_locations[y][x-1]){
-								mines_count++;
-							}
-							if(mine_locations[y][x+1]){
-								mines_count++;
-							}
-							if(mine_locations[y+1][x-1]){
-								mines_count++;
-							}
-							if(mine_locations[y+1][x]){
-								mines_count++;
-							}
-							if(mine_locations[y+1][x+1]){
-								mines_count++;
-							}
-							neighbour[y][x] = mines_count;
-
+					//checking inside fields' neighbours
+					else{
+						if(mine_locations[y-1][x-1]){
+							mines_count++;
 						}
+						if(mine_locations[y-1][x]){
+							mines_count++;
+						}
+						if(mine_locations[y-1][x+1]){
+							mines_count++;
+						}
+						if(mine_locations[y][x-1]){
+							mines_count++;
+						}
+						if(mine_locations[y][x+1]){
+							mines_count++;
+						}
+						if(mine_locations[y+1][x-1]){
+							mines_count++;
+						}
+						if(mine_locations[y+1][x]){
+							mines_count++;
+						}
+						if(mine_locations[y+1][x+1]){
+							mines_count++;
+						}
+						neighbour[y][x] = mines_count;
+
 					}
+
 				}
 			}
 		}
@@ -308,29 +315,25 @@ public class Game_Page implements ActionListener {
 	}
 
 	public void end_game(boolean win) {
-		
-		if(!win) {                                                                                     //Opening gif and launch page for lose situation - EGE
-			
+
+		//Opening gif and launch page for lose situation - EGE
+		if(!win) {
 			LaunchPage launchPage = new LaunchPage(); 													  
 			launchPage.frame.setLocation(1200,300);
 			Bombed bombed = new Bombed();
 			bombed.bombedframe.setLocation(500,400);
-			//break;
-			
 		}
-						
-		if(win) {                                    											       //Opening gif for win situation - EGE
-			
+
+		//Opening gif for win situation - EGE
+		if(win) {
 			frame.dispose();
 			Welldone welldone = new Welldone();
 			LaunchPage launchPage = new LaunchPage();
 			welldone.welldoneframe.setLocation(350,300);
-
-			//break;
-			
 		}
-		
-		for(int i=0; i<buttons.length; i++) {																//Mines are being marked as "*" - EGE
+
+		//Mines are being marked as "*" - EGE
+		for(int i=0; i<buttons.length; i++) {
 			
 			for(int j=0; j<buttons[0].length; j++) {
 				
@@ -342,19 +345,22 @@ public class Game_Page implements ActionListener {
 						
 						buttons[j][i].setText("*");
 						buttons[j][i].setBackground(Color.RED);
-
 						
 					}
+
 				}
 			}
 		}
+
 	}
 
-	public void openArea(int y, int x){											// AYBERK - EGE 
+	//A method for opening empty fields.		AYBERK - EGE
+	public void openArea(int y, int x){
 		
 		if(!mine_locations[y][x] && neighbour[y][x]==0){
 
-			if (y==0 && x==0){																			//opening for top left corner 
+			//opening for top left corner
+			if (y==0 && x==0){
 																						
 				buttons[y+1][x].setEnabled(false);
 				buttons[y+1][x+1].setEnabled(false);
@@ -381,7 +387,8 @@ public class Game_Page implements ActionListener {
 
 			}
 
-			if (x==size-1 && y==0){																			//opening for top right corner
+			//opening for top right corner
+			else if (x==size-1 && y==0){
 																										
 				buttons[y][x-1].setEnabled(false);
 				buttons[y+1][x-1].setEnabled(false);
@@ -407,7 +414,8 @@ public class Game_Page implements ActionListener {
 
 			}
 
-			if (x==size-1 && y==size-1){																			//opening for bottom right corner 		
+			//opening for bottom right corner
+			else if (x==size-1 && y==size-1){
 				
 				buttons[y-1][x-1].setEnabled(false);
 				buttons[y-1][x].setEnabled(false);
@@ -433,7 +441,8 @@ public class Game_Page implements ActionListener {
 
 			}
 
-			if (x==0 && y==size-1){																			//opening bottom left corner neighbours
+			//opening bottom left corner neighbours
+			else if (x==0 && y==size-1){
 																										
 				buttons[y-1][x].setEnabled(false);
 				buttons[y-1][x+1].setEnabled(false);
@@ -458,7 +467,8 @@ public class Game_Page implements ActionListener {
 
 			}
 
-			if (x!=0 && y==0 && x!=size-1){																	//opening top line neighbours
+			//opening top line neighbours
+			else if (y==0){
 
 				buttons[y][x+1].setEnabled(false);
 				buttons[y][x-1].setEnabled(false);
@@ -492,7 +502,8 @@ public class Game_Page implements ActionListener {
 
 			}
 
-			if(x==0 && y!=0 && y!=size-1){																	//opening left line neighbours
+			//opening left line neighbours
+			else if(x==0){
 
 				buttons[y-1][x].setEnabled(false);
 				buttons[y+1][x].setEnabled(false);
@@ -527,7 +538,8 @@ public class Game_Page implements ActionListener {
 
 			}
 
-			if(y==size-1 && x!=0 && x!=size-1){																	//opening bottom line neighbors
+			//opening bottom line neighbors
+			else if(y==size-1){
 
 				buttons[y][x+1].setEnabled(false);
 				buttons[y][x-1].setEnabled(false);
@@ -562,7 +574,8 @@ public class Game_Page implements ActionListener {
 
 			}
 
-			if(x==size-1 && y!=0 && y!=size-1){																	//opening right line neighbors
+			//opening right line neighbors
+			else if(x==size-1){
 
 				buttons[y-1][x].setEnabled(false);
 				buttons[y+1][x].setEnabled(false);
@@ -596,56 +609,54 @@ public class Game_Page implements ActionListener {
 				openArea(y+1, x-1);
 			}
 
-			else{		                                                                             //opening inside neighbours								
-
-				if(x>0 && y>0 && y<size-1 && x<size-1){
-
-					buttons[y-1][x-1].setEnabled(false);
-					buttons[y-1][x].setEnabled(false);
-					buttons[y-1][x+1].setEnabled(false);
-					buttons[y][x+1].setEnabled(false);
-					buttons[y][x-1].setEnabled(false);
-					buttons[y+1][x-1].setEnabled(false);
-					buttons[y+1][x].setEnabled(false);
-					buttons[y+1][x+1].setEnabled(false);
+			//opening inside neighbours
+			else{
+				buttons[y-1][x-1].setEnabled(false);
+				buttons[y-1][x].setEnabled(false);
+				buttons[y-1][x+1].setEnabled(false);
+				buttons[y][x+1].setEnabled(false);
+				buttons[y][x-1].setEnabled(false);
+				buttons[y+1][x-1].setEnabled(false);
+				buttons[y+1][x].setEnabled(false);
+				buttons[y+1][x+1].setEnabled(false);
 					
-					is_visible[y-1][x-1] = true;
-					is_visible[y-1][x] = true;
-					is_visible[y-1][x+1] = true;
-					is_visible[y][x-1] = true;
-					is_visible[y][x+1] = true;
-					is_visible[y+1][x-1] = true;
-					is_visible[y+1][x] = true;
-					is_visible[y+1][x+1] = true;
+				is_visible[y-1][x-1] = true;
+				is_visible[y-1][x] = true;
+				is_visible[y-1][x+1] = true;
+				is_visible[y][x-1] = true;
+				is_visible[y][x+1] = true;
+				is_visible[y+1][x-1] = true;
+				is_visible[y+1][x] = true;
+				is_visible[y+1][x+1] = true;
 
-					buttons[y-1][x-1].setBackground(Color.GREEN);
-					buttons[y-1][x].setBackground(Color.GREEN);
-					buttons[y-1][x+1].setBackground(Color.GREEN);
-					buttons[y][x+1].setBackground(Color.GREEN);
-					buttons[y][x-1].setBackground(Color.GREEN);
-					buttons[y+1][x-1].setBackground(Color.GREEN);
-					buttons[y+1][x].setBackground(Color.GREEN);
-					buttons[y+1][x+1].setBackground(Color.GREEN);
+				buttons[y-1][x-1].setBackground(Color.GREEN);
+				buttons[y-1][x].setBackground(Color.GREEN);
+				buttons[y-1][x+1].setBackground(Color.GREEN);
+				buttons[y][x+1].setBackground(Color.GREEN);
+				buttons[y][x-1].setBackground(Color.GREEN);
+				buttons[y+1][x-1].setBackground(Color.GREEN);
+				buttons[y+1][x].setBackground(Color.GREEN);
+				buttons[y+1][x+1].setBackground(Color.GREEN);
 					
-					buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
-					buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
-					buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
-					buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
-					buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
-					buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
-					buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
-					buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
+				buttons[y-1][x-1].setText(Integer.toString(neighbour[y-1][x-1]));
+				buttons[y-1][x].setText(Integer.toString(neighbour[y-1][x]));
+				buttons[y-1][x+1].setText(Integer.toString(neighbour[y-1][x+1]));
+				buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
+				buttons[y][x-1].setText(Integer.toString(neighbour[y][x-1]));
+				buttons[y+1][x-1].setText(Integer.toString(neighbour[y+1][x-1]));
+				buttons[y+1][x].setText(Integer.toString(neighbour[y+1][x]));
+				buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
 
-					openArea(y-1, x-1);
-					openArea(y-1, x);
-					openArea(y-1, x+1);
-					openArea(y, x+1);
-					openArea(y, x-1);
-					openArea(y+1, x-1);
-					openArea(y+1, x);
-					openArea(y+1, x+1);
-				}
+				openArea(y-1, x-1);
+				openArea(y-1, x);
+				openArea(y-1, x+1);
+				openArea(y, x+1);
+				openArea(y, x-1);
+				openArea(y+1, x-1);
+				openArea(y+1, x);
+				openArea(y+1, x+1);
 			}
+
 		}
 	}
 	
@@ -706,7 +717,6 @@ public class Game_Page implements ActionListener {
 			}
 		}
 	}
-
 
 }
 	
