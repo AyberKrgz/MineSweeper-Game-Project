@@ -2,15 +2,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Welldone extends JFrame {
+public class WellDone extends JFrame {
 
     JFrame welldoneframe;
     JLabel displayField;
     ImageIcon image;
     
-    public Welldone(){
+    public WellDone(){
         
-    	welldoneframe = new JFrame("Welldone!!!");
+    	welldoneframe = new JFrame("Well Done!!!");
     	welldoneframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	welldoneframe.setSize(374,404);
     	welldoneframe.setVisible(true);

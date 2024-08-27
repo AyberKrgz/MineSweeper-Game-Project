@@ -7,7 +7,6 @@ import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class Game_Page implements ActionListener {
 
 	ArrayList<Integer> xCoordinate;
