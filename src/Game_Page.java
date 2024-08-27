@@ -669,11 +669,11 @@ public class Game_Page implements ActionListener {
 					openArea(y, x-1);
 				}
 				if(!is_visible[y][x+1]){
-					buttons[y+1][x+1].setEnabled(false);
-					is_visible[y+1][x+1] = true;
-					buttons[y+1][x+1].setBackground(Color.GREEN);
-					buttons[y+1][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
-					openArea(y+1, x+1);
+					buttons[y][x+1].setEnabled(false);
+					is_visible[y][x+1] = true;
+					buttons[y][x+1].setBackground(Color.GREEN);
+					buttons[y][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
+					openArea(y, x+1);
 				}
 				if(!is_visible[y+1][x-1]){
 					buttons[y+1][x-1].setEnabled(false);
