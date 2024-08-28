@@ -79,14 +79,10 @@ public class Game_Page implements ActionListener {
 		//Adding button_JPanel to frame - ALP
 		frame.add(button_JPanel);
 
-		int xCheck=size+1;
-    	int yCheck=size+1;
-    	
+
     	Random random = new Random();
-    	
     	xCoordinate = new ArrayList<Integer>();
     	yCoordinate = new ArrayList<Integer>();
-
 
 		//evaluating coordinates of mines - EGE
     	for (int i=0;i<mines;i++){
@@ -131,7 +127,6 @@ public class Game_Page implements ActionListener {
 
 	}
 
-	//TODO: Neighbour count bozuldu. Duzeltilecek.
 
 	//Setting neighbour counts  	ALL TOGETHER
 	public void setNeighbourCount(){
@@ -674,7 +669,7 @@ public class Game_Page implements ActionListener {
 					buttons[y][x+1].setEnabled(false);
 					is_visible[y][x+1] = true;
 					buttons[y][x+1].setBackground(Color.GREEN);
-					buttons[y][x+1].setText(Integer.toString(neighbour[y+1][x+1]));
+					buttons[y][x+1].setText(Integer.toString(neighbour[y][x+1]));
 					openArea(y, x+1);
 				}
 				if(!is_visible[y+1][x-1]){
