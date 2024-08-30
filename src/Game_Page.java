@@ -317,8 +317,10 @@ public class Game_Page implements ActionListener {
 		if(!win) {
 			LaunchPage launchPage = new LaunchPage(); 													  
 			launchPage.frame.setLocation(1200,300);
-			Bombed bombed = new Bombed();
-			bombed.bombedframe.setLocation(500,400);
+			/*Bombed bombed = new Bombed();
+			bombed.bombedframe.setLocation(500,400);*/
+			sadAbdulhamid abdulhamid = new sadAbdulhamid();
+			abdulhamid.abdulhamidFrame.setLocation(200,300);
 		}
 
 		//Opening gif for win situation - EGE
