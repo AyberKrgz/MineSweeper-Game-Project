@@ -40,14 +40,14 @@ public class Game_Page implements ActionListener {
 		text_field=new JLabel();
 		text_field.setHorizontalAlignment(JLabel.CENTER);
 		text_field.setFont(new Font("Arial",Font.BOLD,20));
-		text_field.setForeground(Color.BLACK);
+		text_field.setForeground(Color.GREEN);
 		text_field.setText("MineSweeper");
 
 
 		//Adding JLabel to JPanel and adding it top of the frame - ALP
 		text_JPanel=new JPanel();
 		text_JPanel.setVisible(true);
-		text_JPanel.setBackground(Color.GREEN);
+		text_JPanel.setBackground(Color.BLACK);
 		text_JPanel.add(text_field);
 		frame.add(text_JPanel, BorderLayout.NORTH);
 
@@ -71,6 +71,7 @@ public class Game_Page implements ActionListener {
 				buttons[a][b].addActionListener(this);
 				buttons[a][b].setText("");
 				buttons[a][b].setForeground(Color.BLACK);
+				buttons[a][b].setBackground(Color.DARK_GRAY);
 				button_JPanel.add(buttons[a][b]);
 			}
 		}
